@@ -20,6 +20,7 @@
 
   var T = {
     'index.html': ['Accueil', null],
+    'epreuves.html': ['Les épreuves', 'index.html'],
     'c-est-nouveau.html': ["C'est nouveau", 'index.html'],
     'a-propos.html': ['À propos', 'index.html'],
     'plan-du-site.html': ['Plan du site', 'index.html']
