@@ -55,6 +55,7 @@
 <label style="display:flex;flex-direction:column;font-size:.85rem;gap:.25rem">Fille ou garçon<select id="cc-sexe" style="font:inherit;padding:.5rem .6rem;border:1px solid var(--line);border-radius:10px"><option value="F">Fille</option><option value="G" selected>Garçon</option></select></label>
 <label style="display:flex;flex-direction:column;font-size:.85rem;gap:.25rem">Saison<select id="cc-saison" style="font:inherit;padding:.5rem .6rem;border:1px solid var(--line);border-radius:10px"></select></label></div>
 <div id="cc-out" aria-live="polite" style="margin-top:1rem"></div>
+<style>@media (max-width:640px){#cc-tl .cc-h{display:none!important}#cc-tl .cc-v{display:block!important}}</style><div id="cc-tl" style="margin-top:1.2rem"></div>
 <p class="note" style="margin-top:.6rem">La saison sportive va du 1er septembre au 31 août. La catégorie dépend de l’âge atteint au cours de l’année civile où la saison se termine : elle reste la même toute la saison. Calcul d’après les tableaux du règlement de gestion sportive de la FFTir ; en cas de doute, c’est le club ou la FFTir qui fait foi.</p></div>
 <script>(function(){
 var C=[[10,'Poussin','Poussine','PG','PF',true],[12,'Benjamin','Benjamine','BG','BF',true],[14,'Minime','Minime','MG','MF',true],[17,'Cadet','Cadette','CG','CF',false],[20,'Junior','Junior','JG','JF',false],[45,'Senior 1','Dame 1','S1','D1',false],[60,'Senior 2','Dame 2','S2','D2',false],[200,'Senior 3','Dame 3','S3','D3',false]];
@@ -62,6 +63,27 @@ var EP={Poussin:'carabine et pistolet précision sur bloc ressort',Benjamin:'car
 var d=document.getElementById('cc-date'),sx=document.getElementById('cc-sexe'),ss=document.getElementById('cc-saison'),out=document.getElementById('cc-out');
 var now=new Date(),y0=now.getMonth()>=8?now.getFullYear()+1:now.getFullYear();
 for(var y=y0-1;y<=y0+2;y++){var o=document.createElement('option');o.value=y;o.textContent=(y-1)+'-'+y+(y===y0?' (en cours)':'');if(y===y0)o.selected=true;ss.appendChild(o);}
+
+var SEG=[['Poussin',7,10,'#f0892b',1],['Benjamin',11,12,'#2c6fb7',1],['Minime',13,14,'#7656d6',1],['Cadet',15,17,'#12938a',0],['Junior',18,20,'#3d8f2a',0],['S1 / D1',21,45,'#8a5f00',0],['S2 / D2',46,60,'#6b5b45',0],['S3 / D3',61,99,'#44546a',0]];
+var tl=document.getElementById('cc-tl');
+function timeline(){var end=+ss.value,v=d.value,by=v?+v.slice(0,4):null,age=by?end-by:null,n=SEG.length;
+ var h='<div style="font-size:.85rem;color:var(--mut);margin-bottom:.4rem">Les catégories pour la saison '+(end-1)+'-'+end+' <span style="color:#3d8f2a;font-weight:600">· école de tir en couleur vive</span></div>';
+ h+='<div class="cc-h" style="position:relative;padding-top:2.4rem">';
+ if(age!==null&&age>=0){var k=-1;for(var i=0;i<n;i++){if(age<=SEG[i][2]){k=i;break;}}if(k<0)k=n-1;
+  var s=SEG[k],lo=k===0?Math.min(s[1],age):s[1],fr=Math.max(0,Math.min(1,(age-lo+.5)/(s[2]-lo+1)));if(k===0&&age<s[1])fr=.05;
+  var x=(k+fr)/n*100;
+  h+='<div style="position:absolute;top:0;left:'+x+'%;transform:translateX(-50%);text-align:center;white-space:nowrap;z-index:2"><div style="background:#1b2430;color:#fff;font-size:.8rem;font-weight:700;padding:.15rem .5rem;border-radius:99px">'+age+' ans</div><div style="width:2px;height:3.6rem;background:#1b2430;margin:0 auto"></div></div>';}
+ h+='<div style="display:flex;border-radius:12px;overflow:hidden;border:1px solid var(--line)">';
+ SEG.forEach(function(s,i){var y1=end-s[2],y2=end-s[1],yrs=i===0?('né en '+y2+' ou après'):(i===n-1?('né en '+y2+' ou avant'):(y1===y2?y1:y1+'–'+y2));
+  h+='<div style="flex:1;min-width:0;padding:.55rem .3rem;text-align:center;background:'+s[3]+';opacity:'+(s[4]?1:.55)+';color:#fff;border-left:'+(i?'2px solid #fff':'0')+'"><div style="font-weight:700;font-size:.85rem;line-height:1.1">'+s[0]+'</div><div style="font-size:.72rem;opacity:.95">'+(i===0?'≤ 10 ans':(i===n-1?'61 ans et +':s[1]+'–'+s[2]+' ans'))+'</div><div style="font-size:.68rem;opacity:.9;margin-top:.15rem">'+yrs+'</div></div>';});
+ h+='</div></div>';
+ var kk=-1;if(age!==null&&age>=0){for(var i2=0;i2<n;i2++){if(age<=SEG[i2][2]){kk=i2;break;}}if(kk<0)kk=n-1;}
+ h+='<div class="cc-v" style="display:none;border:1px solid var(--line);border-radius:12px;overflow:hidden">';
+ SEG.forEach(function(s,i){var y1=end-s[2],y2=end-s[1],yrs=i===0?('né en '+y2+' ou après'):(i===n-1?('né en '+y2+' ou avant'):(y1===y2?y1:y1+'–'+y2)),on=i===kk;
+  h+='<div style="display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;background:'+(on?s[3]:'transparent')+';color:'+(on?'#fff':'inherit')+';border-top:'+(i?'1px solid var(--line)':'0')+'"><span style="width:.8rem;height:.8rem;border-radius:3px;flex:none;background:'+s[3]+';opacity:'+(s[4]?1:.55)+';outline:'+(on?'2px solid #fff':'0')+'"></span><b style="flex:1">'+s[0]+'</b><span style="font-size:.78rem;text-align:right">'+(i===0?'≤ 10 ans':(i===n-1?'61 ans et +':s[1]+'–'+s[2]+' ans'))+'<br>'+yrs+'</span>'+(on?'<span style="background:#1b2430;color:#fff;font-size:.75rem;font-weight:700;padding:.1rem .45rem;border-radius:99px">'+age+' ans</span>':'')+'</div>';});
+ h+='</div>';
+ if(age!==null&&age>=0&&age<=20){var steps=[];for(var j=0;j<6;j++){var a2=age+j,lab='';for(var q=0;q<n;q++){if(a2<=SEG[q][2]){lab=SEG[q][0];break;}}steps.push('<b>'+(end-1+j)+'-'+(end+j)+'</b> : '+lab);}h+='<p style="font-size:.85rem;margin-top:.8rem">Les prochaines saisons : '+steps.join(' · ')+'</p>';}
+ tl.innerHTML=h;}
 function cat(by,end){var a=end-by;for(var i=0;i<C.length;i++)if(a<=C[i][0])return{c:C[i],a:a};return null;}
 function render(){var v=d.value;if(!v){out.innerHTML='';return;}var by=+v.slice(0,4),end=+ss.value,f=sx.value==='F';
  if(!by||by>end){out.innerHTML='<p>Vérifiez la date de naissance.</p>';return;}
@@ -71,7 +93,8 @@ function render(){var v=d.value;if(!v){out.innerHTML='';return;}var by=+v.slice(
  if(c[5])h+='<p><b>Épreuves possibles :</b> '+EP[c[1]]+'. <a href="epreuves.html">Voir les épreuves →</a></p>';
  var n=cat(by,end+1);if(n&&n.c[1]!==c[1])h+='<p>La saison suivante ('+end+'-'+(end+1)+') : <b>'+(f?n.c[2]:n.c[1])+'</b>.</p>';
  out.innerHTML=h;}
-[d,sx,ss].forEach(function(e){e.addEventListener('input',render);e.addEventListener('change',render);});
+[d,sx,ss].forEach(function(e){e.addEventListener('input',function(){render();timeline();});e.addEventListener('change',function(){render();timeline();});});
+timeline();
 })();</script></section>
 
 <section id="disciplines"><div class="kicker">Les épreuves</div><h2>Un ensemble de disciplines pour les jeunes</h2>
