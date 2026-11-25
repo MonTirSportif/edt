@@ -27,6 +27,7 @@
     'adapter-a-l-age.html': ['Adapter la séance à l’âge', 'index.html'],
     'parents-cibles-couleur.html': ['Le guide des parents', 'index.html'],
     'c-est-nouveau.html': ["C'est nouveau", 'index.html'],
+    'annonce.html': ['Mon annonce', 'index.html'],
     'a-propos.html': ['À propos', 'index.html'],
     'plan-du-site.html': ['Plan du site', 'index.html']
   };
