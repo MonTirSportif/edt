@@ -22,12 +22,13 @@
 <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css">
 <style>.tile .soon{margin-top:.3rem;font-weight:700;color:var(--t);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}.vt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:1rem}.vt{margin:0}.vt .yt{margin:0;max-width:none}.vt figcaption{font-size:.85rem;margin-top:.35rem;line-height:1.35}.cib{display:inline-block;width:1.1rem;height:1.1rem;border-radius:50%;border:2px solid #1b2430;vertical-align:-.2rem;margin-right:.4rem}</style>
+<style>.home-tools{margin:0 0 1rem}.home-tools .print-btn{margin-left:0;display:inline-block;text-decoration:none}.nav-site-btn{background:var(--acc)!important;border-color:var(--acc)!important;color:#fff!important;font-weight:600}@media print{.home-tools{display:none}}</style>
 </head>
 <body>
 <header><div class="bar"><a class="logo" href="index.html" aria-label="MonTirSportif École de tir — accueil"><img src="img/logo.png" alt="MonTirSportif"></a>
 <nav id="nav"><a class="on" href="index.html" style="--navc:#e5473d">Accueil</a><a href="index.html#decouvrir">Découvrir</a><a href="epreuves.html">Les épreuves</a><a href="index.html#progresser">Progresser</a><a href="index.html#competitions">Compétitions</a><a href="index.html#parents">Parents</a><a href="index.html#encadrants">Encadrants</a><a href="annonce.html">Mon annonce</a><a href="a-propos.html">À propos</a></nav></div></header>
 <main class="view on" id="accueil" style="--acc:#e5473d">
-<div class="hero"><div>
+<div class="hero"><div><div class="home-tools"><a class="print-btn nav-site-btn" href="navigation.html" title="Accès direct par thème, parcours guidé ou plan du site"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.2 7.8 14.1 14.1 7.8 16.2 9.9 9.9 16.2 7.8"/></svg>Naviguer dans le site</a></div>
 <div class="kicker">École de tir · 7 à 14 ans</div>
 <h1>L’école de tir, pour bien débuter</h1>
 <p class="lead">Dans les clubs de la FFTir, l’école de tir accueille les jeunes pour leur apprendre le tir sportif en s’amusant, et toujours en sécurité. Ce site s’adresse aux jeunes tireurs, à leurs parents et à leurs encadrants : les disciplines, la progression, les compétitions, et des idées pour les séances.</p>
@@ -190,7 +191,7 @@ document.getElementById('ck-yes').addEventListener('click',function(){save('yes'
 document.getElementById('ck-no').addEventListener('click',function(){save('no');});
 document.addEventListener('click',function(e){if(e.target.closest('[data-cookies]')){e.preventDefault();b.hidden=false;document.getElementById('ck-no').focus();}});})();</script>
 <script src="js/share.js"></script>
-<script src="js/nav.js?v=20261126sw" defer></script>
+<script src="js/nav.js?v=20261126nav" defer></script>
 <script>document.querySelectorAll(".yt").forEach(function(w){var b=w.querySelector(".yt-btn");if(!b)return;b.addEventListener("click",function(){var f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/"+w.dataset.id+"?autoplay=1&rel=0";f.title="Vidéo";f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;w.innerHTML="";w.appendChild(f);});});</script>
 </body>
 </html>
