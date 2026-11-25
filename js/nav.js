@@ -23,7 +23,7 @@
     'epreuves.html': ['Les épreuves', 'index.html'],
     'exercices.html': ['Exemples d’exercices', 'index.html'],
     'progression-pedagogique.html': ['La progression pédagogique', 'index.html'],
-    'parents-cibles-couleur.html': ['Les cibles couleur expliquées aux parents', 'index.html'],
+    'parents-cibles-couleur.html': ['Le guide des parents', 'index.html'],
     'c-est-nouveau.html': ["C'est nouveau", 'index.html'],
     'a-propos.html': ['À propos', 'index.html'],
     'plan-du-site.html': ['Plan du site', 'index.html']
