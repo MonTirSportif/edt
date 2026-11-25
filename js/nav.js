@@ -22,6 +22,7 @@
     'index.html': ['Accueil', null],
     'epreuves.html': ['Les épreuves', 'index.html'],
     'exercices.html': ['Exemples d’exercices', 'index.html'],
+    'progression-pedagogique.html': ['La progression pédagogique', 'index.html'],
     'c-est-nouveau.html': ["C'est nouveau", 'index.html'],
     'a-propos.html': ['À propos', 'index.html'],
     'plan-du-site.html': ['Plan du site', 'index.html']
