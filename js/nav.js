@@ -21,6 +21,13 @@
   var T = {
     'index.html': ['Accueil', null],
     'epreuves.html': ['Les épreuves', 'index.html'],
+    'epreuves/carabine-precision.html': ['Carabine précision', 'epreuves.html'],
+    'epreuves/pistolet-precision.html': ['Pistolet précision', 'epreuves.html'],
+    'epreuves/carabine-3x20.html': ['Carabine 3x20', 'epreuves.html'],
+    'epreuves/pistolet-vitesse-3-7.html': ['Pistolet vitesse 3/7', 'epreuves.html'],
+    'epreuves/pistolet-vitesse-5-cibles.html': ['Pistolet vitesse 5 cibles', 'epreuves.html'],
+    'epreuves/cible-mobile.html': ['Cible mobile', 'epreuves.html'],
+    'epreuves/arbalete-field.html': ['Arbalète field', 'epreuves.html'],
     'exercices.html': ['Exemples d’exercices', 'index.html'],
     'progression-pedagogique.html': ['La progression pédagogique', 'index.html'],
     'animer-une-seance.html': ['Animer une séance', 'index.html'],
